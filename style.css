@@ -32,7 +32,7 @@
             line-height: 1.6;
             margin: 50px auto;
             max-width: 800px;
-            padding: 0px;
+            padding: 0px 15px 15px 15px;
         }
         ::-moz-selection {
         color: #2cd9d0;
