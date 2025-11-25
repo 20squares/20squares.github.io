@@ -109,8 +109,8 @@ a:hover {
 }
 
 section {
-    padding: 40px 0;
-    /* Reduced from 60px for even denser feel */
+    padding: 20px 0;
+    /* Reduced from 40px for tighter feel */
 }
 
 /* Header */
@@ -167,7 +167,8 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: var(--header-height);
+    padding-top: 140px;
+    /* Increased from var(--header-height) to fix "smashed" look */
 }
 
 .hero-label {
@@ -306,6 +307,13 @@ footer {
 
     h1 {
         font-size: 2.5rem;
+        margin-top: 40px;
+    }
+
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 40px;
     }
 
     .mobile-menu-btn {
