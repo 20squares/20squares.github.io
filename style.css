@@ -296,7 +296,17 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .grid-2 {
+    nav {
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .grid-2,
+    .footer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
@@ -318,6 +328,8 @@ footer {
 
     .mobile-menu-btn {
         display: block;
+        order: -1;
+        margin-right: 20px;
     }
 
     .nav-links {
@@ -329,9 +341,9 @@ footer {
         background: var(--bg-color);
         flex-direction: column;
         padding: 40px;
-        transform: translateX(100%);
+        transform: translateX(-100%);
         transition: transform 0.3s ease;
-        border-left: 1px solid var(--card-border);
+        border-right: 1px solid var(--card-border);
     }
 
     .nav-links.active {
