@@ -1,64 +1,364 @@
-        @font-face{
-            font-family: plexMono;
-            src: url(./fonts/IBMPlexMono-Regular.otf);
-            font-weight: normal;
-            font-display: swap;
-        }
-        @font-face{
-            font-family: plexMono;
-            src: url(./fonts/IBMPlexMono-SemiBold.otf);
-            font-weight: bold;
-            font-display: swap;
-        }
-        @font-face{
-            font-family: plexMono;
-            src: url(./fonts/IBMPlexMono-Italic.otf);
-            font-weight: normal;
-            font-style: italic;
-            font-display: swap;
-        }
-        @font-face{
-            font-family: plexMono;
-            src: url(./fonts/IBMPlexMono-SemiBoldItalic.otf);
-            font-weight: bold;
-            font-style: italic;
-            font-display: swap;
-        }
-        body {
-            background-color: #080808;
-            color: #f0f0f0;
-            font-family: plexMono;
-            font-size: 20px;
-            line-height: 1.6;
-            margin: 50px auto;
-            max-width: 800px;
-            padding: 0px 15px 15px 15px;
-        }
-        ::-moz-selection {
-        color: #2cd9d0;
-        background: #080808;
-        }
-        ::selection {
-        color: #2cd9d0;
-        background: #080808;
-        }
-        
-        h2,h2,h3{
-            font-size:28px;
-        }
-        a:link {
-            color: lightseagreen;
-        }
-        a:visited {
-            color: lightseagreen;
-        }
-        code, .code {
-            font-size: 85%;
-            color:lightseagreen;
-        }
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 30%;
-        }
+:root {
+    /* Color Palette - Serious, Academic, Deep Tech */
+    --bg-color: #030303;
+    --bg-gradient: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #030303 100%);
+    --card-bg: rgba(20, 20, 20, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #e0e0e0;
+    --text-muted: #888888;
+    --accent-primary: #ffffff;
+    /* Stark white for emphasis */
+    --accent-subtle: #4a4a4a;
+
+    /* Typography */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    /* Spacing & Layout */
+    --container-width: 1000px;
+    /* Tighter container for reading */
+    --header-height: 70px;
+
+    /* Effects */
+    --glass-blur: blur(20px);
+    --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-main);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Typography Overhaul */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1rem;
+    margin-top: 3rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 70ch;
+    /* Optimal reading length */
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-main);
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+a:hover {
+    border-bottom-color: var(--text-main);
+}
+
+.mono {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+/* Layout */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+section {
+    padding: 20px 0;
+    /* Reduced from 40px for tighter feel */
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: rgba(3, 3, 3, 0.9);
+    /* Slightly more opaque */
+    backdrop-filter: var(--glass-blur);
+    z-index: 1000;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    margin-right: 60px;
+    /* Added explicit gap */
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    margin-left: auto;
+    /* Push links to the right or keep them spaced? User said "smashed against logo", so maybe they want them separated or just more gap. Let's try margin-left auto to push them right, or just keep them with more gap. The previous flex justify-between on nav handles it, but let's ensure the logo has breathing room if they are close. */
+}
+
+.nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-primary);
+    border-bottom: none;
+}
+
+/* Hero */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 140px;
+    /* Increased from var(--header-height) to fix "smashed" look */
+}
+
+.hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Cards & Grid */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 40px;
+    transition: border-color var(--transition-slow), transform var(--transition-slow);
+}
+
+.card:hover {
+    border-color: var(--accent-subtle);
+    transform: translateY(-2px);
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    opacity: 0.8;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--text-main);
+    color: var(--bg-color);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    border-bottom: none;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-main);
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--card-border);
+    padding: 80px 0;
+    margin-top: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+}
+
+/* Utilities */
+.mt-large {
+    margin-top: 80px;
+}
+
+.mb-small {
+    margin-bottom: 20px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* Mobile */
+.mobile-menu-btn {
+    display: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    nav {
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .grid-2,
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-top: 40px;
+    }
+
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 40px;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        order: -1;
+        margin-right: 20px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: var(--bg-color);
+        flex-direction: column;
+        padding: 40px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        border-right: 1px solid var(--card-border);
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
