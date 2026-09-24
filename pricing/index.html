@@ -1,0 +1,648 @@
+<title>Modernes Pricing für den Mittelstand</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap">
+
+<style>
+:root{
+  --bg:#030303;
+  --text:#e0e0e0;
+  --muted:#888888;
+  --white:#ffffff;
+  --subtle:#4a4a4a;
+  --border:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.16);
+  --card:rgba(20,20,20,.6);
+  --acc:#39D7E2;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pad:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(circle at 50% 0%, #1a1a1a 0%, #030303 55%);
+  background-attachment:fixed;
+  color:var(--text); font-family:var(--sans); line-height:1.6;
+  font-size:16px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:860px; margin:0 auto; padding:0 var(--pad);}
+section{padding:58px 0; border-top:1px solid var(--border);}
+section:first-of-type{border-top:0;}
+
+h1,h2,h3{color:var(--white); letter-spacing:-.03em; font-weight:600; text-wrap:balance;}
+h1{font-size:clamp(30px,7.2vw,50px); line-height:1.1;}
+h2{font-size:clamp(23px,4.6vw,32px); line-height:1.18; margin-bottom:18px;}
+h3{font-size:17px; font-weight:600; letter-spacing:-.01em;}
+p{color:var(--muted); font-weight:300; margin-bottom:16px; max-width:64ch;}
+p:last-child{margin-bottom:0;}
+strong{color:var(--text); font-weight:500;}
+.lab{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.14em;
+     text-transform:uppercase; color:var(--muted); display:block;}
+.clock{color:var(--acc);}
+a{color:var(--white); text-decoration:none; border-bottom:1px solid var(--subtle);}
+a:hover{border-bottom-color:var(--white);}
+
+/* ---------- hero ---------- */
+.hero{padding:44px 0 54px;}
+.hero img{height:34px; width:auto; opacity:.85; display:block; margin-bottom:34px;}
+.hero .kick{margin-bottom:16px;}
+.hero p{font-size:clamp(16px,3.6vw,19px); color:var(--text); margin-top:22px;}
+
+/* ---------- question / answer blocks ---------- */
+.qa{border-top:1px solid var(--border); padding:20px 0;}
+.qa:last-of-type{border-bottom:1px solid var(--border);}
+.qa h3{margin-bottom:10px;}
+.qa ul{list-style:none; display:flex; flex-wrap:wrap; gap:8px 10px;}
+.qa li{font-size:14px; font-weight:300; color:var(--muted);
+       border:1px solid var(--border); padding:6px 11px; border-radius:2px;}
+
+/* ---------- inflow figure ---------- */
+figure{margin:26px 0 0;}
+figure svg{display:block; width:100%; height:auto;}
+.wire{fill:none; stroke:rgba(255,255,255,.12); stroke-width:1.4;}
+.bx{fill:rgba(20,20,20,.7); stroke:rgba(255,255,255,.5); stroke-width:1.2;}
+.sv-n{font-family:var(--sans); font-size:17px; font-weight:600; fill:var(--white);}
+.sv-s{font-family:var(--sans); font-size:13px; font-weight:400; fill:var(--text);}
+.sv-l{font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.14em; fill:var(--muted);}
+.sv-src{font-family:var(--sans); font-size:13px; font-weight:400; fill:var(--text);}
+figcaption{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+           color:var(--subtle); margin-top:12px;}
+
+/* ---------- clocks ---------- */
+.clocks{display:grid; gap:14px; margin-top:24px;}
+.clockrow{border:1px solid var(--border); background:var(--card); padding:18px 20px;}
+.clockrow .lab{margin-bottom:12px;}
+.clockrow canvas{display:block; width:100%; height:92px;}
+.clockrow .t{font-size:15px; font-weight:300; color:var(--text); margin-top:12px;}
+
+/* ---------- Standortbestimmung ---------- */
+.quiz{border:1px solid var(--line); background:var(--card); padding:26px 22px; margin-top:26px;}
+.quiz .head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:6px;}
+.qprog{font-family:var(--mono); font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums;}
+.qbar{height:2px; background:rgba(255,255,255,.1); margin:14px 0 24px; position:relative;}
+.qbar i{position:absolute; left:0; top:0; bottom:0; background:var(--acc); width:0;
+        transition:width .35s cubic-bezier(.16,1,.3,1);}
+.qtext{font-size:clamp(18px,4vw,23px); font-weight:600; color:var(--white);
+       letter-spacing:-.02em; line-height:1.25; margin-bottom:20px;}
+.opts{display:grid; gap:9px;}
+.opt{display:block; width:100%; text-align:left; font:inherit; font-size:15.5px; font-weight:300;
+     color:var(--text); background:transparent; border:1px solid var(--border);
+     padding:14px 16px; cursor:pointer; transition:border-color .18s, color .18s, background-color .18s;}
+.opt:hover{border-color:rgba(255,255,255,.4); color:var(--white);}
+.opt:active{background:rgba(255,255,255,.05);}
+.qback{margin-top:18px; font-family:var(--mono); font-size:10.5px; letter-spacing:.12em;
+       text-transform:uppercase; color:var(--subtle); background:none; border:0; cursor:pointer;}
+.qback:hover{color:var(--muted);}
+.qback[hidden]{display:none;}
+
+/* result */
+.res{display:grid; gap:24px;}
+.resgrid{display:grid; gap:22px;}
+.resstage{display:flex; align-items:baseline; gap:16px;}
+.resstage .k{font-size:54px; font-weight:600; color:var(--acc); letter-spacing:-.04em; line-height:1;}
+.resstage .n{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.14em;
+             text-transform:uppercase; color:var(--muted);}
+.resstage .n b{display:block; font-family:var(--sans); font-size:20px; font-weight:600;
+               letter-spacing:-.02em; color:var(--white); text-transform:none; margin-top:5px;}
+.res canvas{display:block; width:100%; height:190px; border:1px solid var(--border);}
+.gaps{list-style:none; display:grid; gap:10px;}
+.gaps li{border-left:2px solid var(--acc); padding-left:14px; font-size:15px;
+         font-weight:300; color:var(--text);}
+.gaps li span{display:block; font-family:var(--mono); font-size:9.5px; font-weight:600;
+              letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3px;}
+.btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:4px;}
+.btn{display:inline-block; font-family:var(--mono); font-size:12px; font-weight:600;
+     letter-spacing:.08em; padding:13px 22px; border:1px solid var(--white);
+     background:var(--white); color:#000; cursor:pointer; border-bottom:1px solid var(--white);}
+.btn:hover{opacity:.88; border-bottom-color:var(--white);}
+.btn--g{background:transparent; color:var(--white); border-color:var(--border);}
+.btn--g:hover{border-color:var(--white); opacity:1;}
+
+/* ---------- ladder ---------- */
+.ladder{list-style:none; margin-top:22px;}
+.ladder li{display:grid; grid-template-columns:46px 1fr; gap:16px;
+           border-top:1px solid var(--border); padding:16px 0;}
+.ladder li:last-child{border-bottom:1px solid var(--border);}
+.ladder .k{font-size:21px; font-weight:600; color:var(--subtle); line-height:1.2;}
+.ladder li.hit .k{color:var(--acc);}
+.ladder .n{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--muted);}
+.ladder .d{font-size:15px; font-weight:300; color:var(--text); margin-top:5px;}
+.ladder .d em{font-style:normal; color:var(--subtle);}
+
+/* ---------- Marge ---------- */
+.mrow{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; align-items:baseline;
+      border-top:1px solid var(--border); padding:14px 0;}
+.mrow .mv{font-size:27px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums;}
+.mrow .mt{font-size:15px; font-weight:300;}
+.mrow .mtag{grid-column:1 / -1; font-family:var(--mono); font-size:9px; font-weight:600;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--subtle);}
+.mrow.dim{color:#6a6a6a;}
+.mrow.hi{color:var(--white);}
+.mrow.hi .mv{font-size:34px;}
+.mrow .eq{font-weight:500; white-space:nowrap;}
+.mrow.dim .eq{color:#9a9a9a;}
+.mrow.hi .eq{color:#fff;}
+
+/* ---------- modules ---------- */
+.mods{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:22px;}
+.mod{border:1px solid var(--border); background:var(--card); padding:18px 16px;}
+.mod .ml{font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.14em;
+         text-transform:uppercase; color:#3d3d3d; display:block; margin-bottom:9px;}
+.mod .mn{font-size:16px; font-weight:400; color:#5e5e5e;}
+.mod--on{border-color:rgba(255,255,255,.6);}
+.mod--on .ml{color:var(--muted);}
+.mod--on .mn{font-size:22px; font-weight:600; color:var(--white); letter-spacing:-.02em;}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border); padding:44px 0 60px; font-size:14px;}
+footer img{height:26px; width:auto; opacity:.5; display:block; margin-bottom:22px;}
+footer .v{color:var(--white); font-size:16px;}
+footer .fine{color:var(--subtle); font-size:12px; margin-top:22px;}
+
+@media (min-width:720px){
+  :root{--pad:40px;}
+  .clocks{grid-template-columns:1fr 1fr;}
+  .resgrid{grid-template-columns:1fr 1fr; align-items:start;}
+  .mrow{grid-template-columns:200px 1fr 130px;}
+  .mrow .mtag{grid-column:auto; text-align:right;}
+}
+:focus-visible{outline:2px solid var(--acc); outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){ *{transition:none !important; scroll-behavior:auto;} }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <img id="mark" alt="20squares">
+    <span class="lab kick">20squares · Mannheim</span>
+    <h1>Modernes Pricing für den Mittelstand</h1>
+    <p>Der Preis ist der direkteste Hebel auf Ihr Ergebnis und der einzige, den Sie allein
+    setzen. In den meisten Häusern entsteht er trotzdem nebenher. Diese Seite zeigt, wie er
+    anderswo entsteht — und Sie können herausfinden, auf welcher Autonomiestufe Ihr Pricing steht.</p>
+    <div class="btnrow" style="margin-top:26px;">
+      <a class="btn" href="#standort">Standortbestimmung starten</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Jeder Preis beantwortet drei Fragen</h2>
+    <p>Selten steht die Antwort irgendwo geschrieben. Was wir hören, wenn wir fragen:</p>
+    <div class="qa">
+      <h3>Kosten plus x — wer legt x fest?</h3>
+      <ul><li>Der Chef.</li><li>Historisch gewachsen.</li><li>Wie letztes Jahr, plus Inflation.</li><li>Auf jeden Artikel derselbe Aufschlag.</li></ul>
+    </div>
+    <div class="qa">
+      <h3>Bekommt jeder Kunde denselben Rabatt?</h3>
+      <ul><li>Wer härter verhandelt, bekommt mehr.</li><li>Der Außendienst entscheidet vor Ort.</li><li>Alte Kunden zahlen weniger. Meistens.</li><li>Eine Regel gibt es nicht.</li></ul>
+    </div>
+    <div class="qa">
+      <h3>Wann ändern Sie den Preis?</h3>
+      <ul><li>1. Januar.</li><li>Wenn der Lieferant erhöht.</li><li>Wenn ein Kunde sich beschwert.</li><li>Wenn jemand Zeit dafür hat.</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Was in einen einzigen Preis eingeht</h2>
+    <p>Ein Unternehmen verarbeitet diese Größen längst — nur verteilt auf Köpfe, Tabellen und
+    Systeme, die nicht miteinander sprechen. Modernes Pricing führt sie an einer Stelle
+    zusammen und rechnet den Preis <span class="clock">je Zeiteinheit</span> neu, statt einmal
+    im Jahr.</p>
+    <figure>
+      <svg viewBox="0 0 700 400" role="img" aria-label="Zwölf Datenquellen fließen in eine einzige Preisentscheidung">
+        <g id="inWires"></g><g id="inLabels"></g>
+        <rect class="bx" x="470" y="140" width="228" height="120"/>
+        <text class="sv-l" x="490" y="172">Ein Unternehmen</text>
+        <text class="sv-n" x="490" y="202">Eine Preisentscheidung</text>
+        <text class="sv-s" x="490" y="228">je Artikel · je Kunde ·</text>
+        <text class="sv-s" x="490" y="246" fill="#39D7E2">je Zeiteinheit</text>
+        <g id="inDots"></g>
+      </svg>
+      <figcaption>Zwölf Eingangsgrößen, eine Entscheidung</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Anderswo bewegt sich der Preis</h2>
+    <p>Zwei Beispiele, in denen dasselbe Gut — ein Stellplatz auf einem Schiff, ein Sitzplatz in
+    einem Flugzeug — laufend neu bepreist wird, während Ihre Preisliste unverändert bleibt.</p>
+    <div class="clocks">
+      <div class="clockrow">
+        <span class="lab">Spotrate · 40-Fuß-Container · Shanghai → Hamburg</span>
+        <canvas id="cTick" width="760" height="184"></canvas>
+        <div class="t">Dieselbe Strecke, derselbe Container, <span class="clock">mehrmals täglich</span> neu bepreist.</div>
+      </div>
+      <div class="clockrow">
+        <span class="lab">Ein Sitzplatz · Frankfurt–Mailand · fester Abflug</span>
+        <canvas id="cFare" width="760" height="184"></canvas>
+        <div class="t">Derselbe Sitzplatz, <span class="clock">mehrmals pro Woche</span> neu bepreist.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>Autonomiestufen — wie beim Fahren</h2>
+    <p>Die Stufen sind an die des automatisierten Fahrens angelehnt — nicht, weil es für Pricing
+    eine Norm gäbe, sondern weil die Abstufung dieselbe ist: Wie viel entscheidet das System,
+    und wie viel entscheidet der Mensch? Kein Haus springt von 0 auf 5, und kaum eines muss
+    überhaupt bis 5. Jede Stufe rechnet für sich.</p>
+    <ul class="ladder" id="ladder">
+      <li data-lv="0"><span class="k">0</span><div><span class="n">Manuell</span><div class="d">Jeder Preis wird einzeln verhandelt, abgeschrieben oder erinnert. Niemand im Haus kann herleiten, warum ein Kunde zahlt, was er zahlt. <em>Kein Assistenzsystem.</em></div></div></li>
+      <li data-lv="1"><span class="k">1</span><div><span class="n">Assistenz</span><div class="d">Eine einzelne Größe wird gerechnet — eine Preisuntergrenze je Artikel, eine Rabattstaffel. Alles andere bleibt Erfahrung. <em>Tempomat.</em></div></div></li>
+      <li data-lv="2"><span class="k">2</span><div><span class="n">Teilautomatisiert</span><div class="d">Kosten, Wettbewerb und Segment werden zusammen gerechnet und ergeben einen Vorschlag; ein Mensch bestätigt ihn. Hier beginnt der messbare Ertrag. <em>Spurhalte- und Abstandsassistent.</em></div></div></li>
+      <li data-lv="3"><span class="k">3</span><div><span class="n">Bedingt automatisiert</span><div class="d">Das System setzt Preise innerhalb eines Rahmens, den Sie festlegen, und meldet alles, was außerhalb liegt. Sie müssen verfügbar sein, nicht anwesend. <em>Stauassistent.</em></div></div></li>
+      <li data-lv="4"><span class="k">4</span><div><span class="n">Hochautomatisiert</span><div class="d">In einem abgegrenzten Bereich — eine Produktgruppe, ein Markt, ein Kanal — entscheidet das System ohne Rückfrage. Außerhalb bleibt alles wie bisher. <em>Robotaxi im festgelegten Gebiet.</em></div></div></li>
+      <li data-lv="5"><span class="k">5</span><div><span class="n">Vollautomatisiert</span><div class="d">Alle Artikel, alle Kunden, alle Märkte, ohne Bereichsgrenze. Für die wenigsten Häuser die sinnvolle Endstufe. <em>Überall, unter allen Bedingungen.</em></div></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Der direkte Hebel auf Ihr Ergebnis</h2>
+    <p>Marge gewinnt man über den Preis oder über die Kosten. Der erste Weg wirkt in
+    der nächsten Rechnung, der zweite braucht Monate. Beide Wege führen zur selben Zahl —
+    oben jeweils der Konzern, hervorgehoben der Weg über den Preis im Mittelstand:</p>
+    <div style="margin-top:22px;">
+      <div class="mrow dim"><span class="mv">+ 0,5 %</span><span class="mt">Marge auf 40 Mrd. € Umsatz <b class="eq">= 200 Mio. €</b></span><span class="mtag">Konzern</span></div>
+      <div class="mrow hi"><span class="mv">+ 3 %</span><span class="mt">Marge auf 50 Mio. € Umsatz <b class="eq">= 1,5 Mio. €</b></span><span class="mtag">Mittelstand</span></div>
+      <div class="mrow dim" style="margin-top:24px;"><span class="mv">− 200 Mio. €</span><span class="mt">Kostenreduktion</span><span class="mtag">Konzern</span></div>
+      <div class="mrow dim"><span class="mv">− 1,5 Mio. €</span><span class="mt">bei gleicher Leistung, in drei Monaten</span><span class="mtag">Mittelstand</span></div>
+    </div>
+    <p style="margin-top:24px;">Der Preis ist dabei der einzige dieser Hebel, den Sie allein
+    setzen. Einkaufspreise und Löhne verhandeln andere mit.</p>
+  </section>
+
+  <section>
+    <h2>Pricing ist der erste Baustein</h2>
+    <p>Jedes Modul bringt für sich Nutzen; verbunden teilen sich die Module eine Datenbasis, und die
+    Kapazität begrenzt dann den Preis, die Prognose füllt die Auslastung.</p>
+    <div class="mods">
+      <div class="mod mod--on"><span class="ml">Modul 01</span><span class="mn">Pricing</span></div>
+      <div class="mod"><span class="ml">Modul</span><span class="mn">Demand Forecasting</span></div>
+      <div class="mod"><span class="ml">Modul</span><span class="mn">Kapazitätsplanung</span></div>
+      <div class="mod"><span class="ml">Modul</span><span class="mn">Logistik</span></div>
+      <div class="mod"><span class="ml">Modul</span><span class="mn">Einkauf</span></div>
+    </div>
+    <p style="margin-top:22px;"><span class="lab" style="display:inline;">Gemeinsame Datenbasis</span>
+    — ERP, CRM, Preislisten, Auftragshistorie, Marktdaten. Die Daten bleiben im Unternehmen: Die
+    Modelle lernen auf den Daten eines Hauses und arbeiten nur für dieses.</p>
+  </section>
+
+  <section>
+    <h2>Woher das kommt</h2>
+    <p>Zehn Jahre Forschung zu Preisbildung, Marktdesign und strategischem Verhalten im
+    Wettbewerb an den Universitäten Mannheim, Oxford und St. Gallen. Entwickelt zuerst für
+    Branchen mit hoch entwickeltem Pricing — Luftfahrt, Seefracht, digitale Marktplätze. Dieselben
+    Verfahren, zugeschnitten auf kleinere Datenbestände und gewachsene Systemlandschaften.</p>
+  </section>
+
+  <section id="standort">
+    <span class="lab">Standortbestimmung</span>
+    <h2 style="margin-top:12px;">Auf welcher Stufe steht Ihr Pricing?</h2>
+    <p>Acht Fragen, keine Eingabe von Daten, nichts wird gespeichert oder übertragen. Sieben davon
+    messen, wie weit Ihre Daten und Regeln tragen; die achte fragt, wer am Ende entscheidet —
+    denn wer jeden Preis von Hand freigibt, steht auf Stufe 2, gleich wie gut die Daten sind.</p>
+
+    <div class="quiz" id="quiz">
+      <div id="qview">
+        <div class="head">
+          <span class="lab">Frage <span id="qn">1</span> von 8</span>
+          <span class="qprog" id="qp"></span>
+        </div>
+        <div class="qbar"><i id="qi"></i></div>
+        <div class="qtext" id="qt">—</div>
+        <div class="opts" id="qo"></div>
+        <button class="qback" id="qb" hidden>← Zurück</button>
+      </div>
+
+      <div id="rview" hidden>
+        <div class="res">
+          <div class="head">
+            <span class="lab">Ihr Ergebnis</span>
+            <span class="qprog" id="rp"></span>
+          </div>
+          <div class="resgrid">
+            <div>
+              <div class="resstage">
+                <span class="k" id="rk">Z</span>
+                <span class="n">Stufe<b id="rn">—</b></span>
+              </div>
+              <p id="rd" style="margin-top:16px;"></p>
+              <p id="rgate" hidden style="margin-top:14px;color:var(--acc);"></p>
+            </div>
+            <canvas id="rc" width="760" height="380" aria-label="Ihre Position zwischen ungeordneter und geordneter Preisbildung"></canvas>
+          </div>
+          <div id="rgbox">
+            <span class="lab" style="margin-bottom:12px;" id="rglab">Ihre größten Lücken</span>
+            <ul class="gaps" id="rg"></ul>
+          </div>
+          <div>
+            <span class="lab" style="margin-bottom:10px;" id="rnextlab">Was zur nächsten Stufe fehlt</span>
+            <p id="rnext" style="color:var(--text);"></p>
+          </div>
+          <div class="btnrow">
+            <a class="btn" id="rmail" href="#">Ergebnis an uns schicken</a>
+            <button class="btn btn--g" id="rreset">Noch einmal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img id="markFoot" alt="20squares">
+    <span class="lab">Kontakt</span>
+    <div class="v"><a href="mailto:info@20squares.xyz">info@20squares.xyz</a></div>
+    <div class="v" style="margin-top:4px;"><a href="https://20squares.xyz">20squares.xyz</a></div>
+    <div class="fine">20squares UG · Julius-Hatry-Str. 1 · 68163 Mannheim · DE362667647</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var LOGO='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNy41LjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyMDE0LjE2IDc5Mi4yMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjAxNC4xNiA3OTIuMjI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNGMEYwRjA7fQ0KCS5zdDF7ZmlsbDpub25lO3N0cm9rZTojRjBGMEYwO3N0cm9rZS13aWR0aDoyOS44ODgzO3N0cm9rZS1taXRlcmxpbWl0OjEwO30NCgkuc3Qye2NsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMDY4NjY2Njg2NTExNjk0NzQ2NTgwMDAwMDA2NTg4Mzk4NjMxODk4Njc0NTYxXyk7fQ0KCS5zdDN7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxODI1MDQ2MjkzMTQ5OTg0NDk0MDAwMDAwMDYwMDkwMjgwMTk2NTAzNDMwNDBfKTt9DQoJDQoJCS5zdDR7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxMTc2Mzc1NTA4MTAwNDczMjIwMTAwMDAwMTYyNzkwNzAxMTQzMTExMDg1MjRfKTtmaWxsOm5vbmU7c3Ryb2tlOiNGMEYwRjA7c3Ryb2tlLXdpZHRoOjI5Ljg4ODM7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQ0KCS5zdDV7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAwODk1NDgwMDU1MDkzNTAyMDk0MzAwMDAwMDYyNjg0MDQ2NTA0NTQ3NDMyMDZfKTt9DQoJLnN0NntjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDExNTQ4MjEyNDA5ODA4OTUzODI5MDAwMDAxNzI3OTMyMzUyMjE3MzgxNTQ2OV8pO30NCgkNCgkJLnN0N3tjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDEzNzgxMTQ2NDgzNTYxNDQyNTM0MDAwMDAwNzkyMzk3MjQ2Nzc5NjE5MDM0N18pO2ZpbGw6bm9uZTtzdHJva2U6I0YwRjBGMDtzdHJva2Utd2lkdGg6MjkuODg4MztzdHJva2UtbWl0ZXJsaW1pdDoxMDt9DQoJLnN0OHtjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDE0MDAwMjcwMDA4MTM2NjAzNDYyMDAwMDAxNDg1NDgyNTY0OTg2NTEzOTM1M18pO30NCgkuc3Q5e2NsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMTQwMDEwNjU0MDcyMjQ3NzQ0NDIwMDAwMDA0MjYxNzQwNjQzMTY4NjkxODkzXyk7fQ0KCQ0KCQkuc3QxMHtjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDA5Njc1NTg2MzI3NDk4MzMxODI0MDAwMDAxMzAyMzgwOTA4MzYwOTk1NjI3OV8pO2ZpbGw6bm9uZTtzdHJva2U6I0YwRjBGMDtzdHJva2Utd2lkdGg6MjkuODg4MztzdHJva2UtbWl0ZXJsaW1pdDoxMDt9DQoJLnN0MTF7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAwNjIxNzI5MDgxMzM2MTc1ODI2NjAwMDAwMDA4NzMwNzQ1Nzc3MDE4Nzk3MDhfKTt9DQoJLnN0MTJ7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAwOTAyODI2NjE2NDI4ODk5NjMwNjAwMDAwMDgxMDk1MTY1NzkwNDI1ODg4MDBfKTt9DQoJDQoJCS5zdDEze2NsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMDcyOTYwNzU4MzA2NjY4Njg4NTAwMDAwMDAxNzE2ODk3NzEyMzk2NjI0NzkzXyk7ZmlsbDpub25lO3N0cm9rZTojRjBGMEYwO3N0cm9rZS13aWR0aDoyOS44ODgzO3N0cm9rZS1taXRlcmxpbWl0OjEwO30NCjwvc3R5bGU+DQo8Zz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTEwNy45OSwxODguMzhIOTg2LjA0di0zMC4yNGw1NS41Mi00Ny4zNGMxOC4zNC0xNS44NiwyNy4yNi0yOC4wMSwyNy4yNi00Mi42M3YtMi40OA0KCQljMC0xNi4zNi05LjkxLTI1LjI4LTI2LjI3LTI1LjI4Yy0xOC4wOSwwLTI3LjAyLDExLjQtMzEuMjMsMjUuNzhsLTI4LjI2LTEwLjY2YzcuNDQtMjIuOCwyNi4yNy00My4xMyw2Mi4yMS00My4xMw0KCQljMzYuOTMsMCw1OCwyMS41Niw1OCw1MS4zMWMwLDI4LjI2LTE5LjA4LDQ2Ljg1LTQ0LjEyLDY2LjkybC0zNy42OCwzMC40OWg4Ni41VjE4OC4zOHoiLz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTEwOC40OCwxMDEuODhjMC01Ni41MSwyMC4zMy04OS40OCw2NS40NC04OS40OHM2NS40NCwzMi45Nyw2NS40NCw4OS40OGMwLDU2LjUxLTIwLjMyLDg5LjQ4LTY1LjQ0LDg5LjQ4DQoJCVMxMTA4LjQ4LDE1OC4zOSwxMTA4LjQ4LDEwMS44OHogTTEyMDYuMzksMTE3LjI1Vjg2LjUxYzAtMjkuNzQtOC42Ny00OC4wOS0zMi40Ny00OC4wOXMtMzIuNDcsMTguMzQtMzIuNDcsNDguMDl2MzAuNzQNCgkJYzAsMjkuNzQsOC42OCw0OC4wOCwzMi40Nyw0OC4wOFMxMjA2LjM5LDE0Ni45OSwxMjA2LjM5LDExNy4yNXogTTExNTguNTUsMTA0LjZ2LTUuNDVjMC02LjY5LDMuOTctMTEuOSwxNS4zNy0xMS45DQoJCWMxMS40LDAsMTUuMzcsNS4yMSwxNS4zNywxMS45djUuNDVjMCw2LjY5LTMuOTcsMTEuOS0xNS4zNywxMS45QzExNjIuNTIsMTE2LjUsMTE1OC41NSwxMTEuMywxMTU4LjU1LDEwNC42eiIvPg0KCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMjc1LjU0LDIyMi41OVYwLjAxaDc3LjA5djIxLjgxaC01MS4zMXYxNzguOTZoNTEuMzF2MjEuODFIMTI3NS41NHoiLz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTU4Mi45LDAuMDF2MjIyLjU4aC03Ny4wOXYtMjEuODFoNTEuMzFWMjEuODJoLTUxLjMxVjAuMDFIMTU4Mi45eiIvPg0KPC9nPg0KPGc+DQoJPHBhdGggY2xhc3M9InN0MCIgZD0iTTE0NzMuMDgsNjAzLjg0aDEyMS45NXYzMC4yNGwtNTUuNTIsNDcuMzRjLTE4LjM0LDE1Ljg2LTI3LjI2LDI4LjAxLTI3LjI2LDQyLjYzdjIuNDgNCgkJYzAsMTYuMzYsOS45MSwyNS4yOCwyNi4yNywyNS4yOGMxOC4wOSwwLDI3LjAyLTExLjQsMzEuMjMtMjUuNzhsMjguMjYsMTAuNjZjLTcuNDQsMjIuOC0yNi4yNyw0My4xMy02Mi4yMSw0My4xMw0KCQljLTM2LjkzLDAtNTgtMjEuNTYtNTgtNTEuMzFjMC0yOC4yNiwxOS4wOC00Ni44NSw0NC4xMi02Ni45MmwzNy42OC0zMC40OWgtODYuNVY2MDMuODR6Ii8+DQoJPHBhdGggY2xhc3M9InN0MCIgZD0iTTE0NzIuNTksNjkwLjM1YzAsNTYuNTEtMjAuMzMsODkuNDgtNjUuNDQsODkuNDhzLTY1LjQ0LTMyLjk3LTY1LjQ0LTg5LjQ4YzAtNTYuNTEsMjAuMzItODkuNDgsNjUuNDQtODkuNDgNCgkJUzE0NzIuNTksNjMzLjgzLDE0NzIuNTksNjkwLjM1eiBNMTM3NC42OCw2NzQuOTh2MzAuNzRjMCwyOS43NCw4LjY3LDQ4LjA5LDMyLjQ3LDQ4LjA5czMyLjQ3LTE4LjM0LDMyLjQ3LTQ4LjA5di0zMC43NA0KCQljMC0yOS43NC04LjY4LTQ4LjA4LTMyLjQ3LTQ4LjA4UzEzNzQuNjgsNjQ1LjI0LDEzNzQuNjgsNjc0Ljk4eiBNMTQyMi41Miw2ODcuNjJ2NS40NWMwLDYuNjktMy45NywxMS45LTE1LjM3LDExLjkNCgkJYy0xMS40LDAtMTUuMzctNS4yMS0xNS4zNy0xMS45di01LjQ1YzAtNi42OSwzLjk3LTExLjksMTUuMzctMTEuOUMxNDE4LjU1LDY3NS43MiwxNDIyLjUyLDY4MC45MywxNDIyLjUyLDY4Ny42MnoiLz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTMwNS41Myw1NjkuNjR2MjIyLjU4aC03Ny4wOXYtMjEuODFoNTEuMzFWNTkxLjQ1aC01MS4zMXYtMjEuODFIMTMwNS41M3oiLz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNOTk4LjE3LDc5Mi4yMlY1NjkuNjRoNzcuMDl2MjEuODFoLTUxLjMxdjE3OC45Nmg1MS4zMXYyMS44MUg5OTguMTd6Ii8+DQo8L2c+DQo8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTc4My4wNCwxMTIuNjZoMTc2LjMzYzIyLjAxLDAsMzkuODUsMTcuODQsMzkuODUsMzkuODV2MTMyLjljMCwyMi4wMS0xNy44NCwzOS44NS0zOS44NSwzOS44NWgtMjAzLjc3DQoJYy0yMi4wMSwwLTU3LjcsMC03OS43LDBoLTEwMS44OCIvPg0KPHBvbHlsaW5lIGNsYXNzPSJzdDAiIHBvaW50cz0iMTcyNC4yNiwxMTIuNjYgMTgxOC4zMSwxNTkuNjggMTc4My4wNCwxMTIuNjYgMTgxOC4zMSw2NS42NCAiLz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xNzgzLjA0LDY3OS42aDE3Ni4zM2MyMi4wMSwwLDM5Ljg1LTE3Ljg0LDM5Ljg1LTM5Ljg1di0xMzIuOWMwLTIyLjAxLTE3Ljg0LTM5Ljg1LTM5Ljg1LTM5Ljg1aC0yMDMuNzcNCgljLTIyLjAxLDAtNTcuNywwLTc5LjcsMGgtMTAxLjg4Ii8+DQo8cG9seWxpbmUgY2xhc3M9InN0MCIgcG9pbnRzPSIxNzI0LjI2LDY3OS42IDE4MTguMzEsNzI2LjYyIDE3ODMuMDQsNjc5LjYgMTgxOC4zMSw2MzIuNTcgIi8+DQo8Zz4NCgk8ZGVmcz4NCgkJPHJlY3QgaWQ9IlNWR0lEXzFfIiB4PSIxMTczIiB5PSIzMDAiIHdpZHRoPSI0MjYiIGhlaWdodD0iMTQzIi8+DQoJPC9kZWZzPg0KCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxMTgzNjQ0NjYxMDUyMTY3NzQxMzAwMDAwMTUyMDYyNzg1NjMwMzAzODkzODhfIj4NCgkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMV8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4NCgk8L2NsaXBQYXRoPg0KCTxnIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDExODM2NDQ2NjEwNTIxNjc3NDEzMDAwMDAxNTIwNjI3ODU2MzAzMDM4OTM4OF8pOyI+DQoJCTxkZWZzPg0KCQkJPHBvbHlsaW5lIGlkPSJTVkdJRF8wMDAwMDAwOTU0OTg2ODkyMDg1NDE1ODU4MDAwMDAwNDg5MTkyODc0NjAwNDM0NjgxMF8iIHBvaW50cz0iMTE3My43MiwzMDAuMzYgMTQ1Ny4xOSw0NDIuMDkgDQoJCQkJMTU5OC45Myw0NDIuMDkgMTU5OC45MywzMDAuMzYgMTE3My43MiwzMDAuMzYgCQkJIi8+DQoJCTwvZGVmcz4NCgkJPGNsaXBQYXRoIGlkPSJTVkdJRF8wMDAwMDAzNDgwMjQxODU0NTE2MTgzMjI2MDAwMDAxNjgwNzk2MDQ3NzgxOTc3MjA3OV8iPg0KCQkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMDAwMDAwMDk1NDk4Njg5MjA4NTQxNTg1ODAwMDAwMDQ4OTE5Mjg3NDYwMDQzNDY4MTBfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxnIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDAzNDgwMjQxODU0NTE2MTgzMjI2MDAwMDAxNjgwNzk2MDQ3NzgxOTc3MjA3OV8pOyI+DQoJCQk8ZGVmcz4NCgkJCQk8cmVjdCBpZD0iU1ZHSURfMDAwMDAxNjg4MTY1OTU5MTgzNTI2Njg2OTAwMDAwMDU0NTE2ODcwMTkzNzAwNjY4NzBfIiB3aWR0aD0iMjAxNSIgaGVpZ2h0PSI3OTMiLz4NCgkJCTwvZGVmcz4NCgkJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAwNDM0NTQxMDQ1NTY1MjUyMTQ5MjAwMDAwMTYwNDA5NTYyNTc1NDQ4NjUxOTVfIj4NCgkJCQk8dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8wMDAwMDE2ODgxNjU5NTkxODM1MjY2ODY5MDAwMDAwNTQ1MTY4NzAxOTM3MDA2Njg3MF8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4NCgkJCTwvY2xpcFBhdGg+DQoJCQkNCgkJCQk8cGF0aCBzdHlsZT0iY2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAwNDM0NTQxMDQ1NTY1MjUyMTQ5MjAwMDAwMTYwNDA5NTYyNTc1NDQ4NjUxOTVfKTtmaWxsOm5vbmU7c3Ryb2tlOiNGMEYwRjA7c3Ryb2tlLXdpZHRoOjI5Ljg4ODM7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBkPSINCgkJCQlNMTU3NC4wMiwzMjUuMjZoLTEwMS44OGMtMjIuMDEsMC01NS44MSw3Ljk4LTc1LjQ5LDE3LjgybC0yMTIuMTksMTA2LjA5Yy0xOS42OCw5Ljg0LTUzLjQ4LDE3LjgyLTc1LjQ5LDE3LjgySDg2NS4zNSIvPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPGc+DQoJPGRlZnM+DQoJCTxyZWN0IGlkPSJTVkdJRF8wMDAwMDEzNDIwNzI3NzgzNjA3NDQ4MDE1MDAwMDAxNTI1OTY3MzY2NTMxNjg3NDE1MF8iIHg9Ijk4MiIgeT0iMzUwIiB3aWR0aD0iNDI2IiBoZWlnaHQ9IjE0MiIvPg0KCTwvZGVmcz4NCgk8Y2xpcFBhdGggaWQ9IlNWR0lEXzAwMDAwMDQ5OTAyNDI1OTg1MzcyMjg2MjgwMDAwMDE4MDEzNDkwMjU4MDkyNzIxMzM1XyI+DQoJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzAwMDAwMTM0MjA3Mjc3ODM2MDc0NDgwMTUwMDAwMDE1MjU5NjczNjY1MzE2ODc0MTUwXyIgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIvPg0KCTwvY2xpcFBhdGg+DQoJPGcgc3R5bGU9ImNsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMDQ5OTAyNDI1OTg1MzcyMjg2MjgwMDAwMDE4MDEzNDkwMjU4MDkyNzIxMzM1Xyk7Ij4NCgkJPGRlZnM+DQoJCQk8cG9seWxpbmUgaWQ9IlNWR0lEXzAwMDAwMDk2MDU5MzkwODMzNTM2MzU5MzUwMDAwMDEzNjQ0NjA4NTY0MjcyNDIyNzg0XyIgcG9pbnRzPSIxNDA3LjM4LDQ5MS45IDk4Mi4xOCw0OTEuOSA5ODIuMTgsMzUwLjE3IA0KCQkJCTExMjMuOTEsMzUwLjE3IDE0MDcuMzgsNDkxLjkgCQkJIi8+DQoJCTwvZGVmcz4NCgkJPGNsaXBQYXRoIGlkPSJTVkdJRF8wMDAwMDExNDc5NDc1ODU3MjY5MTg5NTUyMDAwMDAwNDUzOTM2MTcyOTI1NjI3ODQxOF8iPg0KCQkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMDAwMDAwOTYwNTkzOTA4MzM1MzYzNTkzNTAwMDAwMTM2NDQ2MDg1NjQyNzI0MjI3ODRfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxnIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDExNDc5NDc1ODU3MjY5MTg5NTUyMDAwMDAwNDUzOTM2MTcyOTI1NjI3ODQxOF8pOyI+DQoJCQk8ZGVmcz4NCgkJCQk8cmVjdCBpZD0iU1ZHSURfMDAwMDAwMzk4Mjc2ODk3OTkwOTU5ODc1NDAwMDAwMDc3OTMwMTEyNDEzMjk0MTYwODBfIiB3aWR0aD0iMjAxNSIgaGVpZ2h0PSI3OTMiLz4NCgkJCTwvZGVmcz4NCgkJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxNDQzMjUxNjc0NzQzODU3NDkxOTAwMDAwMTM4NzI1NzUwNDYzMDQ1NTI4ODVfIj4NCgkJCQk8dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8wMDAwMDAzOTgyNzY4OTc5OTA5NTk4NzU0MDAwMDAwNzc5MzAxMTI0MTMyOTQxNjA4MF8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4NCgkJCTwvY2xpcFBhdGg+DQoJCQkNCgkJCQk8cGF0aCBzdHlsZT0iY2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxNDQzMjUxNjc0NzQzODU3NDkxOTAwMDAwMTM4NzI1NzUwNDYzMDQ1NTI4ODVfKTtmaWxsOm5vbmU7c3Ryb2tlOiNGMEYwRjA7c3Ryb2tlLXdpZHRoOjI5Ljg4ODM7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBkPSINCgkJCQlNMTU3NC4wMiwzMjUuMjZoLTEwMS44OGMtMjIuMDEsMC01NS44MSw3Ljk4LTc1LjQ5LDE3LjgybC0yMTIuMTksMTA2LjA5Yy0xOS42OCw5Ljg0LTUzLjQ4LDE3LjgyLTc1LjQ5LDE3LjgySDg2NS4zNSIvPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPHBhdGggY2xhc3M9InN0MSIgZD0iTTE1NzQuMDIsNDY3aC0xMDEuODhjLTIyLjAxLDAtNTUuODEtNy45OC03NS40OS0xNy44MmwtMjEyLjE5LTEwNi4wOWMtMTkuNjgtOS44NC01My40OC0xNy44Mi03NS40OS0xNy44Mg0KCWgtMTAxLjg4Ii8+DQo8Zz4NCgk8ZGVmcz4NCgkJPHJlY3QgaWQ9IlNWR0lEXzAwMDAwMTMwNjMyMDI2MDkzMDg3Njc2ODQwMDAwMDEwNDQzNzU5NzI5NjM4NDgyMDkyXyIgeD0iNjA2IiB5PSIzMDAiIHdpZHRoPSI0MjYiIGhlaWdodD0iMTQzIi8+DQoJPC9kZWZzPg0KCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxMTYyMTY4MTk1MTAxNzU1MDg3NDAwMDAwMTc3ODA4MDE5NzM1NjM1NDAzNTRfIj4NCgkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMDAwMDAxMzA2MzIwMjYwOTMwODc2NzY4NDAwMDAwMTA0NDM3NTk3Mjk2Mzg0ODIwOTJfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJPC9jbGlwUGF0aD4NCgk8ZyBzdHlsZT0iY2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxMTYyMTY4MTk1MTAxNzU1MDg3NDAwMDAwMTc3ODA4MDE5NzM1NjM1NDAzNTRfKTsiPg0KCQk8ZGVmcz4NCgkJCTxwb2x5bGluZSBpZD0iU1ZHSURfMDAwMDAxMzc4MTI3Mzk5MzA3NjUyMDg2NTAwMDAwMDYxOTk0OTMyNzk2NjE1NzI3NzNfIiBwb2ludHM9IjYwNi43OSwzMDAuMzYgODkwLjI1LDQ0Mi4wOSAxMDMxLjk5LDQ0Mi4wOSANCgkJCQkxMDMxLjk5LDMwMC4zNiA2MDYuNzksMzAwLjM2IAkJCSIvPg0KCQk8L2RlZnM+DQoJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAxMjI3MDU2MDYwOTc0OTgwODU0ODAwMDAwMTc5MjY1OTU0NDIyODE3MzIyNzBfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzAwMDAwMTM3ODEyNzM5OTMwNzY1MjA4NjUwMDAwMDA2MTk5NDkzMjc5NjYxNTcyNzczXyIgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIvPg0KCQk8L2NsaXBQYXRoPg0KCQk8ZyBzdHlsZT0iY2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxMjI3MDU2MDYwOTc0OTgwODU0ODAwMDAwMTc5MjY1OTU0NDIyODE3MzIyNzBfKTsiPg0KCQkJPGRlZnM+DQoJCQkJPHJlY3QgaWQ9IlNWR0lEXzAwMDAwMDg5NTUzNzgzNTAwNDgxMTI1MTYwMDAwMDE4MTgzMDE0MDYzMTk0MDQzMDI5XyIgd2lkdGg9IjIwMTUiIGhlaWdodD0iNzkzIi8+DQoJCQk8L2RlZnM+DQoJCQk8Y2xpcFBhdGggaWQ9IlNWR0lEXzAwMDAwMTczODQxODQ5NTkxNjg3ODgwNDAwMDAwMDE0NDA1NDQ1NzU5MTcxMTk2ODA1XyI+DQoJCQkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMDAwMDAwODk1NTM3ODM1MDA0ODExMjUxNjAwMDAwMTgxODMwMTQwNjMxOTQwNDMwMjlfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCQk8L2NsaXBQYXRoPg0KCQkJDQoJCQkJPHBhdGggc3R5bGU9ImNsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMTczODQxODQ5NTkxNjg3ODgwNDAwMDAwMDE0NDA1NDQ1NzU5MTcxMTk2ODA1Xyk7ZmlsbDpub25lO3N0cm9rZTojRjBGMEYwO3N0cm9rZS13aWR0aDoyOS44ODgzO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIgZD0iDQoJCQkJTTE1NzQuMDIsNDY3aC0xMDEuODhjLTIyLjAxLDAtNTUuODEtNy45OC03NS40OS0xNy44MmwtMjEyLjE5LTEwNi4wOWMtMTkuNjgtOS44NC01My40OC0xNy44Mi03NS40OS0xNy44Mkg5MDUuMg0KCQkJCWMtMjIuMDEsMC01NS44MSw3Ljk4LTc1LjQ5LDE3LjgyTDYxNy41Miw0NDkuMThjLTE5LjY5LDkuODQtNTMuNDgsMTcuODItNzUuNSwxNy44Mkg0NDAuMTQiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxnPg0KCTxkZWZzPg0KCQk8cmVjdCBpZD0iU1ZHSURfMDAwMDAwOTA5OTYwODY3MDg2Mzk3MDc5MzAwMDAwMTMzNzA1MzcwODgzMTQ2NTYxNzFfIiB4PSI0MTUiIHk9IjM1MCIgd2lkdGg9IjQyNiIgaGVpZ2h0PSIxNDIiLz4NCgk8L2RlZnM+DQoJPGNsaXBQYXRoIGlkPSJTVkdJRF8wMDAwMDA5NDU5MDM1OTY3NTg0MDMxNTU4MDAwMDAxMzM0NDAwMzkxNzcwNTU0MTUwNF8iPg0KCQk8dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8wMDAwMDA5MDk5NjA4NjcwODYzOTcwNzkzMDAwMDAxMzM3MDUzNzA4ODMxNDY1NjE3MV8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4NCgk8L2NsaXBQYXRoPg0KCTxnIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDA5NDU5MDM1OTY3NTg0MDMxNTU4MDAwMDAxMzM0NDAwMzkxNzcwNTU0MTUwNF8pOyI+DQoJCTxkZWZzPg0KCQkJPHBvbHlsaW5lIGlkPSJTVkdJRF8wMDAwMDE4MDM0MTEwNjk1MDI3MDY3OTIxMDAwMDAwNDk1MjQ3ODM2ODIyOTU4MDQxNl8iIHBvaW50cz0iODQwLjQ0LDQ5MS45IDQxNS4yNCw0OTEuOSA0MTUuMjQsMzUwLjE3IA0KCQkJCTU1Ni45NywzNTAuMTcgODQwLjQ0LDQ5MS45IAkJCSIvPg0KCQk8L2RlZnM+DQoJCTxjbGlwUGF0aCBpZD0iU1ZHSURfMDAwMDAwOTYwMzkzODMwNzYyOTg2OTM5NzAwMDAwMTc5ODg5NDQwMDE4NTQyODc1MDBfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzAwMDAwMTgwMzQxMTA2OTUwMjcwNjc5MjEwMDAwMDA0OTUyNDc4MzY4MjI5NTgwNDE2XyIgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIvPg0KCQk8L2NsaXBQYXRoPg0KCQk8ZyBzdHlsZT0iY2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAwOTYwMzkzODMwNzYyOTg2OTM5NzAwMDAwMTc5ODg5NDQwMDE4NTQyODc1MDBfKTsiPg0KCQkJPGRlZnM+DQoJCQkJPHJlY3QgaWQ9IlNWR0lEXzAwMDAwMTExMTgxODU1ODQyNzU4OTQ3MzcwMDAwMDA2NDEzNTI3NTMzOTQ4MTI5NjY3XyIgd2lkdGg9IjIwMTUiIGhlaWdodD0iNzkzIi8+DQoJCQk8L2RlZnM+DQoJCQk8Y2xpcFBhdGggaWQ9IlNWR0lEXzAwMDAwMDE2NzgzMTk2NDMyODYyNTY5NTkwMDAwMDAwNjM5MjkxNzg5MzY3MDQxMTU3XyI+DQoJCQkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMDAwMDAxMTExODE4NTU4NDI3NTg5NDczNzAwMDAwMDY0MTM1Mjc1MzM5NDgxMjk2NjdfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCQk8L2NsaXBQYXRoPg0KCQkJDQoJCQkJPHBhdGggc3R5bGU9ImNsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMDE2NzgzMTk2NDMyODYyNTY5NTkwMDAwMDAwNjM5MjkxNzg5MzY3MDQxMTU3Xyk7ZmlsbDpub25lO3N0cm9rZTojRjBGMEYwO3N0cm9rZS13aWR0aDoyOS44ODgzO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIgZD0iDQoJCQkJTTE1NzQuMDIsNDY3aC0xMDEuODhjLTIyLjAxLDAtNTUuODEtNy45OC03NS40OS0xNy44MmwtMjEyLjE5LTEwNi4wOWMtMTkuNjgtOS44NC01My40OC0xNy44Mi03NS40OS0xNy44Mkg5MDUuMg0KCQkJCWMtMjIuMDEsMC01NS44MSw3Ljk4LTc1LjQ5LDE3LjgyTDYxNy41Miw0NDkuMThjLTE5LjY5LDkuODQtNTMuNDgsMTcuODItNzUuNSwxNy44Mkg0NDAuMTQiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xMDA3LjA4LDQ2N0g5MDUuMmMtMjIuMDEsMC01NS44MS03Ljk4LTc1LjQ5LTE3LjgyTDYxNy41MiwzNDMuMDhjLTE5LjY5LTkuODQtNTMuNDgtMTcuODItNzUuNS0xNy44Mkg0NDAuMTQiDQoJLz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik00NDAuMTQsNDY3SDU0LjhjLTIyLjAxLDAtMzkuODUsMTcuODQtMzkuODUsMzkuODV2MTMyLjljMCwyMi4wMSwxNy44NCwzOS44NSwzOS44NSwzOS44NWg4MTAuNTUiLz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik00NDAuMTQsMzI1LjI2SDU0LjhjLTIyLjAxLDAtMzkuODUtMTcuODQtMzkuODUtMzkuODV2LTEzMi45YzAtMjIuMDEsMTcuODQtMzkuODUsMzkuODUtMzkuODVoODEwLjU1Ii8+DQo8L3N2Zz4NCg==';
+document.getElementById('mark').src=LOGO;
+document.getElementById('markFoot').src=LOGO;
+
+/* ================= inflow figure ================= */
+var SOURCES=['Materialkosten','Energie','Wechselkurs','Maschinenkapazität','Auftragsbuch',
+  'Lagerbestand','Lieferzeit','Wettbewerbspreise','Gewonnene Angebote','Verlorene Angebote',
+  'Saison','Kundenhistorie'];
+var NS=SOURCES.length, inP=[], inL=[], inD=[];
+(function(){
+  var NSV='http://www.w3.org/2000/svg';
+  var gw=document.getElementById('inWires'), gl=document.getElementById('inLabels'),
+      gd=document.getElementById('inDots');
+  for(var i=0;i<NS;i++){
+    var y0=22+i*32, y1=158+(i/(NS-1))*84;
+    var p=document.createElementNS(NSV,'path');
+    p.setAttribute('d','M 196 '+y0+' C 300 '+y0+', 370 '+y1+', 470 '+y1);
+    p.setAttribute('class','wire'); gw.appendChild(p);
+    inP.push(p); inL.push(p.getTotalLength());
+    var t=document.createElementNS(NSV,'text');
+    t.setAttribute('x','184'); t.setAttribute('y',y0+4);
+    t.setAttribute('text-anchor','end'); t.setAttribute('class','sv-src');
+    t.textContent=SOURCES[i]; gl.appendChild(t);
+    var d=document.createElementNS(NSV,'rect');
+    d.setAttribute('width','4'); d.setAttribute('height','4'); d.setAttribute('fill','#ffffff');
+    gd.appendChild(d); inD.push(d);
+  }
+})();
+function drawIn(el){
+  for(var i=0;i<NS;i++){
+    var ph=((el*0.3)+i*0.083)%1, pt=inP[i].getPointAtLength(ph*inL[i]);
+    inD[i].setAttribute('x',pt.x-2); inD[i].setAttribute('y',pt.y-2);
+    inD[i].setAttribute('opacity',(0.2+0.8*Math.sin(ph*Math.PI)).toFixed(2));
+  }
+}
+
+/* ================= two clocks ================= */
+function ctxOf(id){var c=document.getElementById(id),x=c.getContext('2d');
+  x.setTransform(2,0,0,2,0,0); return {x:x,w:c.width/2,h:c.height/2};}
+var tC=ctxOf('cTick'), fC=ctxOf('cFare');
+function grid(o){var x=o.x; x.clearRect(0,0,o.w,o.h);
+  x.strokeStyle='rgba(255,255,255,.07)'; x.lineWidth=1;
+  for(var g=1;g<3;g++){var y=Math.round(o.h*g/3)+0.5; x.beginPath(); x.moveTo(0,y); x.lineTo(o.w,y); x.stroke();}}
+var feed=[],FEEDN=150,px=0.5;
+for(var i=0;i<FEEDN;i++){px+=(Math.random()-0.5)*0.06;px=Math.max(0.1,Math.min(0.9,px));feed.push(px);}
+function drawTick(){var o=tC,x=o.x;grid(o);
+  x.strokeStyle='#fff';x.lineWidth=1.3;x.lineJoin='round';x.beginPath();
+  for(var i=0;i<feed.length;i++){var X=i/(feed.length-1)*o.w,Y=o.h-8-feed[i]*(o.h-18);i?x.lineTo(X,Y):x.moveTo(X,Y);}
+  x.stroke(); var ly=o.h-8-feed[feed.length-1]*(o.h-18);
+  x.fillStyle='#fff';x.fillRect(o.w-4,ly-2,4,4);}
+var fare=[],FN=26;
+(function(){var v=0.42;for(var i=0;i<FN;i++){v+=(Math.random()-0.5)*0.17;v=Math.max(0.12,Math.min(0.88,v));fare.push(v);}})();
+function drawFare(){var o=fC,x=o.x;grid(o);
+  x.strokeStyle='#fff';x.lineWidth=1.6;x.lineJoin='miter';x.beginPath();
+  for(var i=0;i<FN;i++){var X0=i/FN*o.w,X1=(i+1)/FN*o.w,Y=o.h-8-fare[i]*(o.h-18);
+    i?x.lineTo(X0,Y):x.moveTo(X0,Y);x.lineTo(X1,Y);}
+  x.stroke(); var ly=o.h-8-fare[FN-1]*(o.h-18);
+  x.fillStyle='#fff';x.fillRect(o.w-4,ly-2,4,4);}
+drawTick(); drawFare();
+
+/* ================= Standortbestimmung ================= */
+var Q=[
+ {q:'Wie entsteht der Aufschlag auf die Kosten?',
+  g:'Aufschlag',
+  a:['Gewachsen. Niemand könnte ihn herleiten.',
+     'Ein Satz für alles.',
+     'Unterschiedlich nach Produktgruppe.',
+     'Nach Artikel, Segment und Kanal — und begründbar.']},
+ {q:'Nach welcher Regel wird Rabatt gegeben?',
+  g:'Rabattregel',
+  a:['Es gibt keine Regel.',
+     'Erfahrungswerte, im Kopf der Verkäufer.',
+     'Eine Rabattstaffel auf Papier.',
+     'Regel im System. Abweichung braucht eine Freigabe.']},
+ {q:'Wie oft ändern Sie Preise?',
+  g:'Taktung',
+  a:['Seltener als einmal im Jahr.',
+     'Einmal im Jahr, zum Stichtag.',
+     'Mehrmals im Jahr.',
+     'Laufend, sobald sich Kosten oder Markt bewegen.']},
+ {q:'Kennen Sie die Spanne zwischen Ihrem besten und Ihrem schlechtesten Preis für denselben Artikel?',
+  g:'Preisspanne',
+  a:['Nein.',
+     'Ungefähr, aus dem Bauch.',
+     'Ja, einmal ausgewertet.',
+     'Ja, wird regelmäßig berichtet.']},
+ {q:'Fließen Wettbewerbspreise in Ihre Preisbildung ein?',
+  g:'Wettbewerb',
+  a:['Nein.',
+     'Wenn jemand im Vertrieb etwas aufschnappt.',
+     'Punktuell erhoben, vor wichtigen Verhandlungen.',
+     'Systematisch beobachtet und ausgewertet.']},
+ {q:'Wissen Sie, welche Angebote Sie am Preis verloren haben?',
+  g:'Verlorene Angebote',
+  a:['Nein.',
+     'Einzelne Fälle, wenn sie weh tun.',
+     'Wird erfasst.',
+     'Wird ausgewertet und fließt in die nächste Preisentscheidung zurück.']},
+ {q:'Liegen Kosten, Kapazität und Auftragsbuch für die Preisentscheidung an einer Stelle vor?',
+  g:'Datenbasis',
+  a:['Nein.',
+     'Verteilt — wer es braucht, sucht es zusammen.',
+     'Teilweise verbunden.',
+     'Eine gemeinsame Datenbasis.']}
+];
+/* Die achte Frage zählt nicht zur Reife, sondern deckelt die Stufe: Wer jeden Preis
+   von Hand freigibt, steht auf Stufe 2 — unabhängig davon, wie gut die Daten sind. */
+var GATE={
+  q:'Wer entscheidet über den Preis, der am Ende hinausgeht?',
+  g:'Entscheidung',
+  a:['Ein Mensch, in jedem Einzelfall.',
+     'Ein Mensch — aber auf Basis eines gerechneten Vorschlags.',
+     'Das System, innerhalb eines Rahmens; Ausnahmen gehen an einen Menschen.',
+     'Das System, in einem abgegrenzten Bereich ohne Rückfrage.'],
+  cap:[1,2,3,4]
+};
+Q.push(GATE);
+var LV=[
+ {k:'0', n:'Manuell', d:'Preise entstehen einzeln — verhandelt, abgeschrieben, erinnert. Das ist kein Vorwurf, sondern der Normalfall. Es bedeutet aber, dass niemand im Haus sagen kann, wie viel Marge zwischen dem besten und dem schlechtesten Abschluss liegt.'},
+ {k:'1', n:'Assistenz', d:'Eine einzelne Größe wird gerechnet, alles andere bleibt Erfahrung. Das trägt, solange der Markt ruhig ist — und kippt, sobald Kosten oder Wettbewerb sich bewegen.'},
+ {k:'2', n:'Teilautomatisiert', d:'Mehrere Größen werden zusammen gerechnet und ergeben einen Vorschlag, den ein Mensch bestätigt. Das ist die Stufe, auf der Pricing anfängt, sich messbar zu rechnen.'},
+ {k:'3', n:'Bedingt automatisiert', d:'Das System entscheidet innerhalb eines Rahmens, den Sie gesetzt haben, und meldet die Ausnahmen. Ihre Arbeit verlagert sich vom Einzelpreis auf den Rahmen.'},
+ {k:'4', n:'Hochautomatisiert', d:'In einem abgegrenzten Bereich entscheidet das System ohne Rückfrage. Für die meisten Häuser Ihrer Größe ist das die sinnvolle Endstufe — nicht Stufe 5.'},
+ {k:'5', n:'Vollautomatisiert', d:'Ihr Pricing ist weiter als das der allermeisten Häuser Ihrer Größe. In der Stufe geht es nicht weiter; interessant wird die Breite.'}
+];
+var NEXT=[
+ 'Auf Stufe 1 kommen Sie mit einer einzigen gerechneten Größe. Am schnellsten trägt eine Preisuntergrenze je Artikel, gerechnet auf Ihren Daten der letzten zwei Jahre. Dafür brauchen Sie keine Software, sondern eine Auswertung.',
+ 'Stufe 2 heißt: mehrere Größen zusammen rechnen und daraus einen Vorschlag erzeugen. Voraussetzung ist, dass die heutigen Regeln überhaupt aufgeschrieben sind — genau daran scheitert der Schritt meistens, nicht am Modell.',
+ 'Stufe 3 heißt: einen Rahmen festlegen, innerhalb dessen das System ohne Rückfrage entscheidet. Die Arbeit liegt im Rahmen, nicht im Modell. Beginnen Sie mit dem Bereich, in dem Sie die Preisuntergrenzen am besten kennen.',
+ 'Stufe 4 heißt: einen Bereich benennen — eine Produktgruppe, ein Markt — und dort auch die gemeldeten Ausnahmen dem System überlassen, statt sie vorzulegen. Sinnvoll, sobald ein Quartal gezeigt hat, dass Sie an diesen Meldungen ohnehin nichts geändert haben.',
+ 'Stufe 5 lohnt sich selten. Interessanter ist die Breite: dieselbe Stufe für weitere Produktgruppen, und die Module daneben — Kapazitätsplanung und Nachfrageprognose an derselben Datenbasis.',
+ 'Weiter geht es nicht in der Stufe, sondern in der Breite: Kapazität und Nachfrageprognose an dieselbe Datenbasis hängen, damit die Kapazität den Preis begrenzt und die Prognose die Auslastung füllt.'
+];
+
+var qn=document.getElementById('qn'), qp=document.getElementById('qp'),
+    qi=document.getElementById('qi'), qt=document.getElementById('qt'),
+    qo=document.getElementById('qo'), qb=document.getElementById('qb'),
+    qview=document.getElementById('qview'), rview=document.getElementById('rview');
+var idx=0, ans=[];
+
+function renderQ(){
+  var q=Q[idx];
+  qn.textContent=idx+1;
+  qi.style.width=(idx/Q.length*100)+'%';
+  qt.textContent=q.q;
+  qo.innerHTML='';
+  q.a.forEach(function(text,score){
+    var b=document.createElement('button');
+    b.className='opt'; b.type='button'; b.textContent=text;
+    b.addEventListener('click', function(){ ans[idx]=score; idx++;
+      if(idx>=Q.length) showResult(); else renderQ(); });
+    qo.appendChild(b);
+  });
+  qb.hidden = idx===0;
+}
+qb.addEventListener('click', function(){ if(idx>0){ idx--; ans.length=idx; renderQ(); } });
+
+/* result scatter: the same picture as the ladder, stopped at the reader's level */
+var PTS=[], NP=130;
+for(var i=0;i<NP;i++){
+  var ox=0.07+(i/(NP-1))*0.86;
+  PTS.push({cx:0.07+Math.random()*0.86, cy:0.08+Math.random()*0.84,
+            ox:ox, oy:Math.min(0.92,0.20+0.62*Math.pow(ox,1.6)+(Math.random()-0.5)*0.035),
+            u:0.10+Math.random()*0.74});
+}
+var rc=document.getElementById('rc'), rx=rc.getContext('2d');
+rx.setTransform(2,0,0,2,0,0);
+var RW=rc.width/2, RH=rc.height/2, rT=0, rTarget=0, rRaf=null;
+function drawRes(){
+  rx.clearRect(0,0,RW,RH);
+  rx.strokeStyle='rgba(255,255,255,.14)'; rx.lineWidth=1;
+  rx.beginPath(); rx.moveTo(28.5,10); rx.lineTo(28.5,RH-24.5); rx.lineTo(RW-12,RH-24.5); rx.stroke();
+  rx.fillStyle='#888'; rx.font='600 8px "IBM Plex Mono", monospace';
+  rx.fillText('PREIS',36,20); rx.fillText('KUNDE / ARTIKEL',RW-104,RH-9);
+  if(rT>0.4){
+    rx.strokeStyle='rgba(57,215,226,'+((rT-0.4)/0.6*0.55).toFixed(3)+')';
+    rx.lineWidth=1.5; rx.beginPath();
+    for(var s=0;s<=60;s++){
+      var t=s/60, ax=0.07+t*0.86, ay=0.20+0.62*Math.pow(ax,1.6);
+      var X=28+ax*(RW-50), Y=14+ay*(RH-50);
+      s?rx.lineTo(X,Y):rx.moveTo(X,Y);
+    }
+    rx.stroke();
+  }
+  for(var i=0;i<NP;i++){
+    var p=PTS[i], k=Math.max(0,Math.min(1,(rT-p.u)/0.22));
+    k = k<0.5 ? 2*k*k : 1-Math.pow(-2*k+2,2)/2;
+    var X=28+(p.cx+(p.ox-p.cx)*k)*(RW-50), Y=14+(p.cy+(p.oy-p.cy)*k)*(RH-50);
+    rx.fillStyle='rgba(255,255,255,'+(0.26+k*0.68).toFixed(3)+')';
+    var r=2+k*0.8; rx.fillRect(X-r,Y-r,r*2,r*2);
+  }
+}
+function animRes(){
+  if(Math.abs(rT-rTarget)>0.0015){ rT+=(rTarget-rT)*0.06; drawRes(); rRaf=requestAnimationFrame(animRes); }
+  else { rT=rTarget; drawRes(); rRaf=null; }
+}
+
+function showResult(){
+  /* Reife aus den sieben Sachfragen, Deckel aus der achten */
+  var reifeSum=ans.slice(0,7).reduce(function(a,b){return a+b;},0);
+  var reife = reifeSum<=3 ? 0 : reifeSum<=7 ? 1 : reifeSum<=11 ? 2 : reifeSum<=15 ? 3 : 4;
+  var cap = GATE.cap[ans[7]];
+  var lv = Math.min(reife, cap);
+  document.getElementById('rp').textContent=reifeSum+' / 21 Punkte';
+  document.getElementById('rk').textContent=LV[lv].k;
+  document.getElementById('rn').textContent=LV[lv].n;
+  document.getElementById('rd').textContent=LV[lv].d;
+  document.getElementById('rnext').textContent=NEXT[lv];
+  document.getElementById('rnextlab').textContent =
+    lv===4 ? 'Was als Nächstes lohnt' : 'Was zur nächsten Stufe fehlt';
+
+  /* Der interessanteste Fall: Daten und Regeln tragen weiter, als entschieden wird. */
+  var gate=document.getElementById('rgate');
+  if(reife>cap){
+    gate.textContent='Ihre Daten und Regeln tragen bereits Stufe '+reife+'. Was Sie auf Stufe '+
+      lv+' hält, ist nicht die Technik, sondern die Entscheidung darüber, wer entscheidet.';
+    gate.hidden=false;
+  } else { gate.hidden=true; }
+
+  /* Nur echte Lücken zeigen — Bestantworten sind keine. */
+  var luecken=ans.slice(0,7).map(function(v,i){return {v:v,i:i};})
+                 .filter(function(o){ return o.v<=1; })
+                 .sort(function(a,b){ return a.v-b.v || a.i-b.i; }).slice(0,3);
+  var box=document.getElementById('rgbox'), ul=document.getElementById('rg');
+  ul.innerHTML='';
+  if(luecken.length===0){ box.hidden=true; }
+  else {
+    box.hidden=false;
+    document.getElementById('rglab').textContent =
+      luecken.length===1 ? 'Ihre größte Lücke' : 'Ihre größten Lücken';
+    luecken.forEach(function(o){
+      var li=document.createElement('li');
+      var sp=document.createElement('span'); sp.textContent=Q[o.i].g;
+      li.appendChild(sp);
+      li.appendChild(document.createTextNode(Q[o.i].a[o.v]));
+      ul.appendChild(li);
+    });
+  }
+
+  var lad=document.querySelectorAll('#ladder li');
+  for(var i=0;i<lad.length;i++) lad[i].classList.toggle('hit', i===lv);
+
+  var body='Standortbestimmung Pricing\n\nAutonomiestufe: '+LV[lv].k+' — '+LV[lv].n+
+           '\nReife: '+reifeSum+' von 21 Punkten'+
+           (reife>cap ? '\nHinweis: Daten und Regeln tragen Stufe '+reife+', begrenzt durch die Entscheidungsfrage.' : '')+
+           '\n\nAntworten:\n'+
+           Q.map(function(q,i){ return '· '+q.g+': '+q.a[ans[i]]+(i<7 ? ' ('+ans[i]+'/3)' : ''); }).join('\n')+
+           '\n\nMeine Frage dazu:\n';
+  document.getElementById('rmail').href='mailto:info@20squares.xyz?subject='+
+    encodeURIComponent('Standortbestimmung Pricing — Autonomiestufe '+LV[lv].k)+'&body='+encodeURIComponent(body);
+
+  qview.hidden=true; rview.hidden=false;
+  rTarget=[0.05,0.26,0.5,0.74,1][lv];
+  if(RM){ rT=rTarget; drawRes(); } else { rT=0; drawRes(); if(!rRaf) rRaf=requestAnimationFrame(animRes); }
+  document.getElementById('standort').scrollIntoView({block:'start'});
+}
+document.getElementById('rreset').addEventListener('click', function(){
+  idx=0; ans=[]; rview.hidden=true; qview.hidden=false; renderQ();
+  var lad=document.querySelectorAll('#ladder li');
+  for(var i=0;i<lad.length;i++) lad[i].classList.remove('hit');
+});
+renderQ();
+
+/* ================= ambient motion ================= */
+var t0=0, lastT=0, lastF=0;
+function frame(ts){
+  if(!t0) t0=ts;
+  drawIn((ts-t0)/1000);
+  if(ts-lastT>1000){ lastT=ts;
+    px+=(Math.random()-0.5)*0.09; px=Math.max(0.1,Math.min(0.9,px));
+    feed.push(px); feed.shift(); drawTick(); }
+  if(ts-lastF>4000){ lastF=ts;
+    var v=fare[FN-1]+(Math.random()-0.5)*0.22+(0.5-fare[FN-1])*0.07;
+    fare.push(Math.max(0.1,Math.min(0.9,v))); fare.shift(); drawFare(); }
+  requestAnimationFrame(frame);
+}
+drawIn(0);
+if(!RM) requestAnimationFrame(frame);
+})();
+</script>
